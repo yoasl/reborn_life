@@ -360,7 +360,7 @@ class RebornLife(Star):
     # LLM 请求注入（方案 A：安全注入，不碰原有人设）
     # ═══════════════════════════════════════════════════
 
-    @on_llm_request
+    @on_llm_request()
     async def on_llm_request_handler(self, event):
         """在每次 LLM 调用前，将今日动态追加入系统提示词"""
         if not self._dynamic_applied:
