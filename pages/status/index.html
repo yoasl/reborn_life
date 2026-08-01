@@ -5,129 +5,49 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>reborn-life 控制台</title>
 <style>
-:root {
-  --bg: #1a1a2e;
-  --card: #16213e;
-  --border: #2a3a5c;
-  --text: #e0e0e0;
-  --muted: #8899aa;
-  --accent: #6c9fff;
-  --danger: #e0556a;
-  --warn: #f0a040;
-  --ok: #4caf84;
-  --tag-bg: #0f3460;
-}
+:root { --bg: #1a1a2e; --card: #16213e; --border: #2a3a5c; --text: #e0e0e0; --muted: #8899aa; --accent: #6c9fff; --danger: #e0556a; --warn: #f0a040; --ok: #4caf84; --tag-bg: #0f3460; }
 * { box-sizing: border-box; margin: 0; padding: 0; }
-body {
-  font-family: -apple-system, "Microsoft YaHei", sans-serif;
-  background: var(--bg);
-  color: var(--text);
-  padding: 24px;
-  font-size: 14px;
-  line-height: 1.6;
-}
-.header {
-  display: flex; align-items: center; gap: 12px;
-  margin-bottom: 24px; padding-bottom: 16px;
-  border-bottom: 1px solid var(--border);
-}
+body { font-family: -apple-system, "Microsoft YaHei", sans-serif; background: var(--bg); color: var(--text); padding: 24px; font-size: 14px; line-height: 1.6; }
+.header { display: flex; align-items: center; gap: 12px; margin-bottom: 20px; padding-bottom: 14px; border-bottom: 1px solid var(--border); }
 .header h1 { font-size: 22px; font-weight: 600; }
-.header .badge {
-  padding: 2px 10px; border-radius: 12px;
-  font-size: 12px; font-weight: 500;
-}
+.badge { padding: 3px 12px; border-radius: 12px; font-size: 12px; font-weight: 500; }
 .badge-ready { background: var(--ok); color: #fff; }
 .badge-warn { background: var(--warn); color: #111; }
 .badge-off { background: var(--muted); color: #fff; }
-
 .tabs { display: flex; gap: 4px; margin-bottom: 20px; }
-.tab {
-  padding: 8px 20px; border: 1px solid var(--border);
-  border-radius: 8px 8px 0 0; cursor: pointer;
-  background: transparent; color: var(--muted);
-  font-size: 14px; transition: all .15s;
-}
+.tab { padding: 8px 20px; border: 1px solid var(--border); border-radius: 8px 8px 0 0; cursor: pointer; background: transparent; color: var(--muted); font-size: 14px; transition: all .15s; }
 .tab.active { background: var(--card); color: var(--text); border-bottom-color: var(--card); }
 .tab:hover:not(.active) { color: var(--text); }
-
 .panel { display: none; }
 .panel.active { display: block; }
-
-.card {
-  background: var(--card); border: 1px solid var(--border);
-  border-radius: 10px; padding: 20px; margin-bottom: 16px;
-}
+.card { background: var(--card); border: 1px solid var(--border); border-radius: 10px; padding: 20px; margin-bottom: 16px; }
 .card h3 { font-size: 15px; margin-bottom: 12px; color: var(--accent); }
-.card p { margin-bottom: 8px; }
-.card .muted { color: var(--muted); font-size: 13px; }
-
-.stats { display: grid; grid-template-columns: repeat(auto-fill, minmax(180px,1fr)); gap: 12px; margin-bottom: 20px; }
-.stat {
-  background: var(--card); border: 1px solid var(--border);
-  border-radius: 10px; padding: 16px;
-}
+.muted { color: var(--muted); font-size: 13px; }
+.stats { display: grid; grid-template-columns: repeat(auto-fill, minmax(170px,1fr)); gap: 10px; margin-bottom: 20px; }
+.stat { background: var(--card); border: 1px solid var(--border); border-radius: 10px; padding: 14px; }
 .stat .label { font-size: 12px; color: var(--muted); margin-bottom: 4px; }
 .stat .value { font-size: 20px; font-weight: 600; }
-.stat .value.warn { color: var(--warn); }
-.stat .value.ok { color: var(--ok); }
-
-textarea {
-  width: 100%; min-height: 200px;
-  background: var(--bg); color: var(--text);
-  border: 1px solid var(--border); border-radius: 8px;
-  padding: 14px; font-size: 14px;
-  font-family: inherit; line-height: 1.8; resize: vertical;
-}
+.stat .value.warn { color: var(--warn); } .stat .value.ok { color: var(--ok); }
+textarea { width: 100%; min-height: 180px; background: var(--bg); color: var(--text); border: 1px solid var(--border); border-radius: 8px; padding: 14px; font-size: 14px; font-family: inherit; line-height: 1.8; resize: vertical; }
 textarea:focus { outline: none; border-color: var(--accent); }
-
-.btn {
-  display: inline-flex; align-items: center; gap: 6px;
-  padding: 8px 18px; border-radius: 8px; border: none;
-  font-size: 14px; cursor: pointer; font-weight: 500;
-  transition: opacity .15s;
-}
-.btn:hover { opacity: .85; }
-.btn-primary { background: var(--accent); color: #fff; }
-.btn-danger { background: var(--danger); color: #fff; }
-.btn-warn { background: var(--warn); color: #111; }
-.btn-ok { background: var(--ok); color: #fff; }
-.btn-muted { background: var(--border); color: var(--text); }
+.btn { display: inline-flex; align-items: center; gap: 6px; padding: 8px 18px; border-radius: 8px; border: none; font-size: 14px; cursor: pointer; font-weight: 500; }
+.btn:hover { opacity: .85; } .btn:disabled { opacity: .5; cursor: not-allowed; }
+.btn-primary { background: var(--accent); color: #fff; } .btn-muted { background: var(--border); color: var(--text); }
+.btn-ok { background: var(--ok); color: #fff; } .btn-warn { background: var(--warn); color: #111; }
 .btn-group { display: flex; gap: 8px; margin-top: 12px; flex-wrap: wrap; }
-
-.conflict-item {
-  background: var(--bg); border-left: 3px solid var(--warn);
-  padding: 14px; border-radius: 0 8px 8px 0; margin-bottom: 12px;
-}
+.conflict-item { background: var(--bg); border-left: 3px solid var(--warn); padding: 14px; border-radius: 0 8px 8px 0; margin-bottom: 12px; }
 .conflict-item .detail { margin-bottom: 8px; }
 .conflict-item .source { font-size: 12px; color: var(--muted); }
-.conflict-item .hint {
-  font-size: 12px; color: var(--muted); margin-top: 6px;
-  font-style: italic;
-}
-
-.history-item {
-  padding: 10px 0; border-bottom: 1px solid var(--border);
-  display: flex; justify-content: space-between; align-items: center;
-}
+.conflict-item .hint { font-size: 12px; color: var(--muted); margin-top: 6px; font-style: italic; }
+.history-item { padding: 10px 0; border-bottom: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; }
 .history-item:last-child { border-bottom: none; }
 .history-item .date { font-weight: 600; min-width: 100px; }
 .history-item .summary { flex: 1; margin: 0 16px; }
-.history-item .tag {
-  padding: 2px 8px; border-radius: 10px; font-size: 11px;
-  background: var(--tag-bg);
-}
-
-.loading { text-align: center; padding: 40px; color: var(--muted); }
+.history-item .tag { padding: 2px 8px; border-radius: 10px; font-size: 11px; background: var(--tag-bg); }
 .empty { text-align: center; padding: 32px; color: var(--muted); font-size: 15px; }
-
-.toast {
-  position: fixed; bottom: 24px; right: 24px;
-  padding: 12px 24px; border-radius: 8px; color: #fff;
-  font-size: 14px; z-index: 9999; animation: fadeIn .2s;
-  max-width: 360px;
-}
-.toast.ok { background: var(--ok); }
-.toast.err { background: var(--danger); }
+.error-block { background: #3a1520; border: 1px solid var(--danger); border-radius: 8px; padding: 16px; margin: 12px 0; color: #f08080; font-size: 13px; }
+.toast { position: fixed; bottom: 24px; right: 24px; padding: 12px 24px; border-radius: 8px; color: #fff; font-size: 14px; z-index: 9999; animation: fadeIn .2s; max-width: 360px; }
+.toast.ok { background: var(--ok); } .toast.err { background: var(--danger); }
 @keyframes fadeIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
 </style>
 </head>
@@ -135,221 +55,201 @@ textarea:focus { outline: none; border-color: var(--accent); }
 
 <div class="header">
   <h1>&#x1F989; reborn-life</h1>
-  <span id="status-badge" class="badge badge-off">加载中...</span>
+  <span id="status-badge" class="badge badge-off">初始化中...</span>
 </div>
 
-<div class="stats" id="stats"></div>
+<div class="stats" id="stats">
+  <div class="stat"><div class="label">状态</div><div class="value muted">加载中...</div></div>
+</div>
 
 <div class="tabs">
   <button class="tab active" data-tab="dynamic">&#x1F4DD; 今日动态</button>
-  <button class="tab" data-tab="conflicts">&#x26A0;&#xFE0F; 冲突处理 <span id="conflict-count"></span></button>
+  <button class="tab" data-tab="conflicts">&#x26A0;&#xFE0F; 冲突处理</button>
   <button class="tab" data-tab="history">&#x1F4C5; 更新历史</button>
 </div>
 
-<!-- 面板: 今日动态 -->
+<!-- 今日动态 -->
 <div class="panel active" id="panel-dynamic">
   <div class="card">
     <h3>&#x1F4DD; 今日动态内容</h3>
-    <p class="muted">最近一次生成的动态文本。你可以编辑后重新应用。</p>
     <p class="muted" id="dynamic-date"></p>
     <textarea id="dynamic-text" placeholder="暂无动态内容..."></textarea>
     <div class="btn-group">
-      <button class="btn btn-primary" onclick="applyDynamic()">&#x2705; 应用</button>
-      <button class="btn btn-muted" onclick="saveDynamic()">&#x1F4BE; 保存编辑</button>
+      <button class="btn btn-primary" id="btn-apply" onclick="applyDynamic()">&#x2705; 应用</button>
+      <button class="btn btn-muted" id="btn-save" onclick="saveDynamic()">&#x1F4BE; 保存编辑</button>
     </div>
   </div>
   <div class="card">
     <h3>&#x2699;&#xFE0F; 操作</h3>
     <div class="btn-group">
-      <button class="btn btn-primary" onclick="rerunUpdate()">&#x1F504; 手动执行更新</button>
+      <button class="btn btn-primary" id="btn-rerun" onclick="rerunUpdate()">&#x1F504; 手动执行更新</button>
     </div>
   </div>
 </div>
 
-<!-- 面板: 冲突处理 -->
+<!-- 冲突处理 -->
 <div class="panel" id="panel-conflicts">
-  <div id="conflicts-container">
-    <div class="empty">暂无待处理的冲突</div>
-  </div>
+  <div id="conflicts-container"><div class="empty">点击上方标签加载...</div></div>
 </div>
 
-<!-- 面板: 历史 -->
+<!-- 更新历史 -->
 <div class="panel" id="panel-history">
-  <div id="history-container">
-    <div class="loading">加载中...</div>
-  </div>
+  <div id="history-container"><div class="empty">点击上方标签加载...</div></div>
 </div>
 
 <script>
-const bridge = window.AstrBotPluginPage;
-let context = {};
+var bridge = window.AstrBotPluginPage || {};
+var _ready = false;
 
 async function init() {
-  context = await bridge.ready();
-  document.querySelectorAll('.tab').forEach(el => {
-    el.addEventListener('click', () => switchTab(el.dataset.tab));
-  });
-  await loadStatus();
-  await loadAll();
-}
-
-async function loadStatus() {
   try {
-    const s = await bridge.apiGet('status');
-    renderStats(s);
-    const badge = document.getElementById('status-badge');
-    if (!s.analyzer_ready) { badge.className = 'badge badge-off'; badge.textContent = '未就绪'; }
-    else if (s.conflicts_pending > 0) { badge.className = 'badge badge-warn'; badge.textContent = `${s.conflicts_pending} 个冲突待处理`; }
-    else if (s.dynamic_applied) { badge.className = 'badge badge-ready'; badge.textContent = '运行中'; }
-    else { badge.className = 'badge badge-warn'; badge.textContent = '待应用'; }
-  } catch(e) { showToast('加载状态失败: ' + e.message, 'err'); }
+    if (bridge.ready) await bridge.ready();
+    _ready = true;
+  } catch(e) { console.error('bridge error:', e); _ready = true; }
+
+  // 标签点击
+  document.querySelectorAll('.tab').forEach(function(el) {
+    el.addEventListener('click', function() { switchTab(this.dataset.tab); });
+  });
+
+  try { await loadStatus(); } catch(e) { console.error(e); }
+  try { await loadDynamic(); } catch(e) { console.error(e); }
 }
 
-function renderStats(s) {
-  document.getElementById('stats').innerHTML = `
-    <div class="stat"><div class="label">角色</div><div class="value">${esc(s.character_name||'未设置')}</div></div>
-    <div class="stat"><div class="label">今日日期</div><div class="value">${esc(s.today)}</div></div>
-    <div class="stat"><div class="label">上次更新</div><div class="value ${s.last_dynamic_date?'ok':'muted'}">${esc(s.last_dynamic_date||'暂无')}</div></div>
-    <div class="stat"><div class="label">冲突待处理</div><div class="value ${s.conflicts_pending>0?'warn':'ok'}">${s.conflicts_pending}</div></div>
-    <div class="stat"><div class="label">自动更新</div><div class="value ${s.auto_update?'ok':''}">${s.auto_update?'开启':'关闭'}</div></div>
-    <div class="stat"><div class="label">应用状态</div><div class="value ${s.dynamic_applied?'ok':'warn'}">${s.dynamic_applied?'已应用':'待应用'}</div></div>
-  `;
+function callApi(path, method, body) {
+  if (method === 'GET') return bridge.apiGet(path);
+  return bridge.apiPost(path, body || {});
 }
 
-async function loadAll() {
-  await Promise.all([loadDynamic(), loadConflicts(), loadHistory()]);
+// ---- 状态 ----
+async function loadStatus() {
+  var s = await callApi('status', 'GET');
+  var badge = document.getElementById('status-badge');
+  if (!s.analyzer_ready) { badge.className = 'badge badge-off'; badge.textContent = '未就绪'; }
+  else if (s.conflicts_pending > 0) { badge.className = 'badge badge-warn'; badge.textContent = s.conflicts_pending + ' 个冲突'; }
+  else if (s.dynamic_applied) { badge.className = 'badge badge-ready'; badge.textContent = '运行中'; }
+  else { badge.className = 'badge badge-warn'; badge.textContent = '待应用'; }
+
+  document.getElementById('stats').innerHTML =
+    '<div class="stat"><div class="label">角色</div><div class="value">' + esc(s.character_name||'未设置') + '</div></div>' +
+    '<div class="stat"><div class="label">上次更新</div><div class="value ' + (s.last_dynamic_date?'ok':'muted') + '">' + esc(s.last_dynamic_date||'暂无') + '</div></div>' +
+    '<div class="stat"><div class="label">冲突</div><div class="value ' + (s.conflicts_pending>0?'warn':'ok') + '">' + s.conflicts_pending + '</div></div>' +
+    '<div class="stat"><div class="label">生效</div><div class="value ' + (s.dynamic_applied?'ok':'warn') + '">' + (s.dynamic_applied?'是':'否') + '</div></div>';
 }
 
-// ── 动态 ──
-
+// ---- 动态 ----
 async function loadDynamic() {
   try {
-    const d = await bridge.apiGet('dynamic');
-    document.getElementById('dynamic-date').textContent = d.date ? `更新日期: ${d.date}` : '';
+    var d = await callApi('dynamic', 'GET');
+    document.getElementById('dynamic-date').textContent = d.date ? '更新日期: ' + d.date : '暂无数据';
     document.getElementById('dynamic-text').value = d.text || '';
-    document.getElementById('dynamic-text').placeholder = d.text ? '' : '暂无动态内容，请点击「手动执行更新」生成';
-  } catch(e) { showToast('加载动态失败: ' + e.message, 'err'); }
+  } catch(e) { document.getElementById('dynamic-date').textContent = '加载失败: ' + e.message; }
 }
 
 async function saveDynamic() {
-  const text = document.getElementById('dynamic-text').value.trim();
-  if (!text) { showToast('动态内容不能为空', 'err'); return; }
-  try {
-    await bridge.apiPost('dynamic', { text, summary: '手动编辑' });
-    showToast('已保存，点击「应用」即可生效', 'ok');
-    await loadStatus();
-  } catch(e) { showToast('保存失败: ' + e.message, 'err'); }
+  var text = document.getElementById('dynamic-text').value.trim();
+  if (!text) { toast('内容不能为空', 'err'); return; }
+  try { await callApi('dynamic', 'POST', {text:text, summary:'手动编辑'}); toast('已保存', 'ok'); await loadStatus(); }
+  catch(e) { toast('保存失败: ' + e.message, 'err'); }
 }
 
 async function applyDynamic() {
-  try {
-    await bridge.apiPost('apply', {});
-    showToast('动态内容已应用，下次对话即可生效', 'ok');
-    await loadStatus();
-    await loadAll();
-  } catch(e) { showToast('应用失败: ' + e.message, 'err'); }
+  var btn = document.getElementById('btn-apply');
+  btn.disabled = true; btn.textContent = '应用中...';
+  try { await callApi('apply', 'POST'); toast('已应用，下次对话生效', 'ok'); await loadStatus(); }
+  catch(e) { toast('应用失败: ' + e.message, 'err'); }
+  finally { btn.disabled = false; btn.textContent = '✅ 应用'; }
 }
 
-// ── 冲突 ──
-
+// ---- 冲突（懒加载） ----
+var _conflictsLoaded = false;
 async function loadConflicts() {
+  if (_conflictsLoaded) return; _conflictsLoaded = true;
+  var container = document.getElementById('conflicts-container');
+  container.innerHTML = '<div class="empty">加载中...</div>';
   try {
-    const c = await bridge.apiGet('conflicts');
-    const count = c.conflicts.filter(x => x.status === 'pending').length;
-    document.getElementById('conflict-count').textContent = count > 0 ? `(${count})` : '';
-    const container = document.getElementById('conflicts-container');
-    if (count === 0) {
-      container.innerHTML = '<div class="empty">暂无待处理的冲突 &#x2705;</div>';
-      return;
-    }
-    let html = '';
-    c.conflicts.forEach((item, i) => {
-      if (item.status !== 'pending') return;
-      html += `
-        <div class="conflict-item">
-          <div class="detail"><strong>冲突内容：</strong>${esc(item.conflict_detail)}</div>
-          <div class="source">来源视频：${esc(item.source_video||'未知')}</div>
-          <div class="hint">提示：「更新底座」仅当你确认角色的核心人设已永久改变时才选择此项</div>
-          <div class="btn-group">
-            <button class="btn btn-ok" onclick="resolveConflict(${i},'accept')">&#x2705; 接受此更新</button>
-            <button class="btn btn-muted" onclick="resolveConflict(${i},'ignore')">&#x274C; 忽略</button>
-            <button class="btn btn-warn" onclick="resolveConflict(${i},'update_base')">&#x1F4DD; 更新底座</button>
-          </div>
-        </div>`;
+    var c = await callApi('conflicts', 'GET');
+    var pending = c.conflicts.filter(function(x){ return x.status === 'pending'; });
+    if (!pending.length) { container.innerHTML = '<div class="empty">暂无待处理的冲突 ✅</div>'; return; }
+    var html = '';
+    pending.forEach(function(item, i) {
+      html += '<div class="conflict-item">' +
+        '<div class="detail"><strong>冲突：</strong>' + esc(item.conflict_detail) + '</div>' +
+        '<div class="source">来源：' + esc(item.source_video||'未知') + '</div>' +
+        '<div class="hint">「更新底座」仅当确认角色核心人设已永久改变时才选择</div>' +
+        '<div class="btn-group">' +
+          '<button class="btn btn-ok" data-idx="' + i + '" data-act="accept">✅ 接受</button>' +
+          '<button class="btn btn-muted" data-idx="' + i + '" data-act="ignore">❌ 忽略</button>' +
+          '<button class="btn btn-warn" data-idx="' + i + '" data-act="update_base">📝 更新底座</button>' +
+        '</div></div>';
     });
     container.innerHTML = html;
-  } catch(e) { showToast('加载冲突失败: ' + e.message, 'err'); }
+    container.querySelectorAll('.btn').forEach(function(btn) {
+      btn.addEventListener('click', function() {
+        resolveConflict(parseInt(this.dataset.idx), this.dataset.act);
+      });
+    });
+  } catch(e) { container.innerHTML = '<div class="error-block">加载失败: ' + esc(e.message) + '</div>'; }
 }
 
 async function resolveConflict(index, action) {
   try {
-    await bridge.apiPost('conflicts/resolve', { index, action });
-    const msgs = {
-      accept: '已接受此更新',
-      ignore: '已忽略此冲突',
-      update_base: '已将此内容合并到底座人设'
-    };
-    showToast(msgs[action] || '已处理', 'ok');
+    await callApi('conflicts/resolve', 'POST', {index:index, action:action});
+    var msgs = {accept:'已接受', ignore:'已忽略', update_base:'已更新底座'};
+    toast(msgs[action]||'已处理', 'ok');
     await loadStatus();
+    _conflictsLoaded = false;
     await loadConflicts();
-  } catch(e) { showToast('处理冲突失败: ' + e.message, 'err'); }
+  } catch(e) { toast('处理失败: ' + e.message, 'err'); }
 }
 
-// ── 历史 ──
-
+// ---- 历史（懒加载） ----
+var _historyLoaded = false;
 async function loadHistory() {
+  if (_historyLoaded) return; _historyLoaded = true;
+  var container = document.getElementById('history-container');
+  container.innerHTML = '<div class="empty">加载中...</div>';
   try {
-    const h = await bridge.apiGet('history');
-    const container = document.getElementById('history-container');
-    if (!h.history.length) {
-      container.innerHTML = '<div class="empty">暂无更新记录</div>';
-      return;
-    }
-    let html = '';
-    h.history.forEach(entry => {
-      html += `
-        <div class="history-item">
-          <span class="date">${esc(entry.date)}</span>
-          <span class="summary">${esc(entry.summary||'无更新')}</span>
-          <span class="tag">${entry.has_update ? '有更新' : '今日无事'}</span>
-        </div>`;
+    var h = await callApi('history', 'GET');
+    if (!h.history.length) { container.innerHTML = '<div class="empty">暂无更新记录</div>'; return; }
+    var html = '';
+    h.history.forEach(function(e) {
+      html += '<div class="history-item">' +
+        '<span class="date">' + esc(e.date) + '</span>' +
+        '<span class="summary">' + esc(e.summary||'无更新') + '</span>' +
+        '<span class="tag">' + (e.has_update?'有更新':'今日无事') + '</span></div>';
     });
     container.innerHTML = html;
-  } catch(e) { showToast('加载历史失败: ' + e.message, 'err'); }
+  } catch(e) { container.innerHTML = '<div class="error-block">加载失败: ' + esc(e.message) + '</div>'; }
 }
 
-// ── 操作 ──
-
+// ---- 操作 ----
 async function rerunUpdate() {
-  const btn = event.target;
-  btn.disabled = true;
-  btn.textContent = '执行中...';
-  try {
-    const r = await bridge.apiPost('rerun', {});
-    showToast(r.message || '更新完成', 'ok');
-    await loadStatus();
-    await loadAll();
-  } catch(e) { showToast('更新失败: ' + e.message, 'err'); }
-  finally { btn.disabled = false; btn.textContent = '手动执行更新'; }
+  var btn = document.getElementById('btn-rerun');
+  btn.disabled = true; btn.textContent = '执行中...';
+  try { var r = await callApi('rerun', 'POST'); toast(r.message||'更新完成', 'ok'); await loadStatus(); await loadDynamic(); }
+  catch(e) { toast('更新失败: ' + e.message, 'err'); }
+  finally { btn.disabled = false; btn.textContent = '🔄 手动执行更新'; }
 }
 
-// ── 工具 ──
-
+// ---- 标签 ----
 function switchTab(name) {
-  document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
-  document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
-  document.querySelector(`[data-tab="${name}"]`).classList.add('active');
-  document.getElementById(`panel-${name}`).classList.add('active');
+  document.querySelectorAll('.tab').forEach(function(t){ t.classList.remove('active'); });
+  document.querySelectorAll('.panel').forEach(function(p){ p.classList.remove('active'); });
+  var tabEl = document.querySelector('[data-tab="' + name + '"]');
+  if (tabEl) tabEl.classList.add('active');
+  var panel = document.getElementById('panel-' + name);
+  if (panel) panel.classList.add('active');
+  if (name === 'conflicts') loadConflicts();
+  if (name === 'history') loadHistory();
 }
 
-function showToast(msg, type) {
-  const el = document.createElement('div');
-  el.className = `toast ${type}`;
-  el.textContent = msg;
+function toast(msg, type) {
+  var el = document.createElement('div');
+  el.className = 'toast ' + type; el.textContent = msg;
   document.body.appendChild(el);
-  setTimeout(() => el.remove(), 3000);
+  setTimeout(function(){ el.remove(); }, 3000);
 }
-
 function esc(s) { return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
 
 init();
