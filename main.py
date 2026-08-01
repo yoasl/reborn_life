@@ -13,11 +13,11 @@ from astrbot.api.event import AstrMessageEvent
 from astrbot.api.star import Context, Star, register
 from astrbot.api import logger
 
-from services.bilibili import BilibiliClient
-from services.analyzer import ContentAnalyzer
-from services.persona import PersonaManager
-from services.notifier import WeChatNotifier
-from services.scheduler import DailyScheduler
+from .services.bilibili import BilibiliClient
+from .services.analyzer import ContentAnalyzer
+from .services.persona import PersonaManager
+from .services.notifier import WeChatNotifier
+from .services.scheduler import DailyScheduler
 
 
 @register(
