@@ -99,7 +99,7 @@ class RebornLife(Star):
     # 生命周期
     # ═══════════════════════════════════════════════════
 
-    async def __on_start__(self):
+    async def initialize(self):
         """插件启动时调用"""
         if not self._check_ready():
             return
@@ -114,7 +114,7 @@ class RebornLife(Star):
             self._scheduler_task = asyncio.create_task(self._scheduler_loop())
             logger.info("[reborn-life] 调度器已启动，将在每日 5:00 执行更新")
 
-    async def __on_stop__(self):
+    async def terminate(self):
         """插件停止时调用"""
         if self._scheduler_task:
             self._scheduler_task.cancel()
