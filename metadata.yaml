@@ -1,4 +1,4 @@
-name: reborn-life
+name: reborn_life
 desc: 自动更新 AstrBot 人格提示词，基于B站UP主最新投稿和直播切片，每日同步角色最新动态
 help: 基于B站内容每日自动更新人格提示词，支持多角色、内容偏好筛选、冲突检测
 version: v1.0.0
