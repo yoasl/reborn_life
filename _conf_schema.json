@@ -1,0 +1,100 @@
+{
+  "bilibili_uid": {
+    "type": "string",
+    "default": "",
+    "description": "B站UP主的UID",
+    "hint": "在UP主B站主页的网址中可以看到，例如 https://space.bilibili.com/3546633422453282 中的数字部分"
+  },
+  "character_name": {
+    "type": "string",
+    "default": "",
+    "description": "角色名称",
+    "hint": "用于标识这个角色，也会显示在人格名称中"
+  },
+  "base_persona": {
+    "type": "text",
+    "default": "",
+    "description": "核心人设底座（不变部分）",
+    "hint": "这是角色的核心人格描述，不会被每日更新覆盖。包含性格、说话风格、背景故事等。每日更新只追加「近期动态」部分。"
+  },
+  "relationship_tendency": {
+    "type": "string",
+    "default": "女友",
+    "options": ["女友", "朋友", "兄弟", "自定义"],
+    "description": "关系倾向",
+    "hint": "决定每日动态内容的语气和角度。女友=亲密撒娇，朋友=轻松日常，兄弟=直率互怼"
+  },
+  "custom_tendency_prompt": {
+    "type": "text",
+    "default": "",
+    "description": "自定义倾向提示词（仅当倾向选「自定义」时生效）",
+    "hint": "描述你想要的关系风格，例如：像青梅竹马一样，既亲密又有分寸感"
+  },
+  "content_preference": {
+    "type": "string",
+    "default": "全部",
+    "options": ["全部", "游戏", "杂谈", "唱歌", "联动", "日常", "自定义"],
+    "description": "内容偏好筛选",
+    "hint": "只提取该类型的内容来更新人格。选「全部」则不筛选"
+  },
+  "custom_content_keywords": {
+    "type": "text",
+    "default": "",
+    "description": "自定义内容偏好关键词（仅当内容偏好选「自定义」时生效）",
+    "hint": "用逗号分隔关键词，如：恐怖游戏,情感话题,粉丝互动"
+  },
+  "search_keywords": {
+    "type": "text",
+    "default": "",
+    "description": "额外搜索关键词（可选）",
+    "hint": "除了UP主本人投稿外，额外搜索这些关键词来找相关切片。留空则只搜UID相关。多个关键词用逗号分隔"
+  },
+  "min_play_count": {
+    "type": "int",
+    "default": 1000,
+    "description": "最少播放量过滤",
+    "hint": "播放量低于此值的切片会被忽略，避免低质量内容污染人格"
+  },
+  "max_daily_items": {
+    "type": "int",
+    "default": 5,
+    "description": "每日最多分析条数",
+    "hint": "每天最多分析多少条新内容，防止提示词过长"
+  },
+  "dynamic_section_max_length": {
+    "type": "int",
+    "default": 500,
+    "description": "每日动态段最大字数",
+    "hint": "生成的「近期动态」部分最多多少字，太长会影响LLM上下文"
+  },
+  "wechat_webhook_url": {
+    "type": "string",
+    "default": "",
+    "description": "企业微信机器人 Webhook URL",
+    "hint": "用于每日更新完成后的通知推送"
+  },
+  "llm_api_key": {
+    "type": "string",
+    "default": "",
+    "description": "LLM API Key（用于分析B站内容）",
+    "hint": "可以与AstrBot主LLM共用同一个Key，留空则自动使用AstrBot配置的LLM"
+  },
+  "llm_base_url": {
+    "type": "string",
+    "default": "",
+    "description": "LLM API Base URL（可选）",
+    "hint": "留空则自动使用AstrBot配置的LLM地址"
+  },
+  "llm_model": {
+    "type": "string",
+    "default": "",
+    "description": "LLM 模型名（可选）",
+    "hint": "建议用 deepseek-chat 或 deepseek-v4-flash 等推理模型，留空则自动使用AstrBot配置的模型"
+  },
+  "auto_update": {
+    "type": "bool",
+    "default": true,
+    "description": "是否启用每日自动更新",
+    "hint": "关闭后不会自动更新，但仍可手动触发"
+  }
+}
